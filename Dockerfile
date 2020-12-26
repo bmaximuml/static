@@ -10,7 +10,8 @@ RUN set -aeux; \
         --home ${WORKDIR} \
         --shell ${SHELL} \
         --disabled-password \
-        ${USER}
+        ${USER} ; \
+    rm ${WORKDIR}/*
 
 COPY --chown=${USER}:${USER} src/  ${WORKDIR}
 
