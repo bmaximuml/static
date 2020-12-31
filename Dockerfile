@@ -15,4 +15,7 @@ RUN set -aeux; \
 
 COPY --chown=${USER}:${USER} src/  ${WORKDIR}
 
-HEALTHCHECK --interval=10s CMD curl --fail localhost:80 || exit 1
+COPY nginx.conf /etc/nginx/nginx.conf
+COPY default.conf /etc/nginx/conf.d/default.conf
+
+HEALTHCHECK --interval=10s CMD curl --fail localhost:80/status || exit 1
